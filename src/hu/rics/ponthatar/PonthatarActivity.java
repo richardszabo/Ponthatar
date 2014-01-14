@@ -12,6 +12,20 @@ public class PonthatarActivity extends Activity {
     private EditText maximumText;	
     private EditText min5pText;
     private EditText min5vText;
+    private EditText max5pText;
+    private EditText max5vText;
+    private EditText min4pText;
+    private EditText min4vText;
+    private EditText max4pText;
+    private EditText max4vText;
+    private EditText min3pText;
+    private EditText min3vText;
+    private EditText max3pText;
+    private EditText max3vText;
+    private EditText min2pText;
+    private EditText min2vText;
+    private EditText max2pText;
+    private EditText max2vText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +34,20 @@ public class PonthatarActivity extends Activity {
 		maximumText = (EditText) findViewById(R.id.maximumText);		
     	min5pText = (EditText) findViewById(R.id.min5pText);
     	min5vText = (EditText) findViewById(R.id.min5vText);
+    	max5pText = (EditText) findViewById(R.id.max5pText);
+    	max5vText = (EditText) findViewById(R.id.max5vText);
+    	min4pText = (EditText) findViewById(R.id.min4pText);
+    	min4vText = (EditText) findViewById(R.id.min4vText);
+    	max4pText = (EditText) findViewById(R.id.max4pText);
+    	max4vText = (EditText) findViewById(R.id.max4vText);
+    	min3pText = (EditText) findViewById(R.id.min3pText);
+    	min3vText = (EditText) findViewById(R.id.min3vText);
+    	max3pText = (EditText) findViewById(R.id.max3pText);
+    	max3vText = (EditText) findViewById(R.id.max3vText);
+    	min2pText = (EditText) findViewById(R.id.min2pText);
+    	min2vText = (EditText) findViewById(R.id.min2vText);
+    	max2pText = (EditText) findViewById(R.id.max2pText);
+    	max2vText = (EditText) findViewById(R.id.max2vText);
     	
 		maximumText.addTextChangedListener(new TextWatcher() {
 		    public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -31,6 +59,13 @@ public class PonthatarActivity extends Activity {
 
 		    public void afterTextChanged(Editable s) {
 		    	calcValue(maximumText,min5pText,min5vText);
+		    	calcValue(maximumText,max5pText,max5vText);
+		    	calcValue(maximumText,min4pText,min4vText);
+		    	calcValue(maximumText,max4pText,max4vText);
+		    	calcValue(maximumText,min3pText,min3vText);
+		    	calcValue(maximumText,max3pText,max3vText);
+		    	calcValue(maximumText,min2pText,min2vText);
+		    	calcValue(maximumText,max2pText,max2vText);
 		    }
 		});
     	min5pText.setText("81");

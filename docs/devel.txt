@@ -32,3 +32,4 @@ Fejlesztes:
 - TableLayout beallitasa.
 - Mezok felpakolasa (egyelore lista nelkul).
 - Egyszeru esemeny az egyik mezore.
+- Esemeny minden szamitando mezore.
