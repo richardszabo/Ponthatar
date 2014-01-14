@@ -1,0 +1,29 @@
+Ponthatar
+=========
+
+2014. 01. 14.
+Kicsi program, amivel a dolgozatok osztalyozasa egyszerubbe valhat.
+Celja, hogy a maximalis pontszambol kiszamitsa az 1-tol 5-ig terjedo osztalyzatok ponthatarait.
+Trivialisan megoldottam google sheet-en, de praktikusabb, ha nem kell halo, belepes stb., hanem 
+egy kis program gyorsan mutatja az ertekeket.
+Pl.
+Jegy    also %  felso %
+5	90	100
+4	77	89
+3	64	76
+2	51	63
+tablazat eseten, ha a maximum pont 40, akkor 
+ezt kell kiirnia a programnak:
+36	40
+30.8	35.6
+25.6	30.4
+20.4	25.2
+
+A fenti tablazat szodolgozatok eseten ervenyes, temazaroknal az alabbi hatarok lepnek eletbe:
+5	85	100
+4	70	84
+3	55	69
+2	40	54
+
+Vagyis, a %-os ertekeket tudni kell valtoztatni. Jo volna, ha listabol valasztva semakent 
+is be lehetne tolteni a %-os ertekeket.
