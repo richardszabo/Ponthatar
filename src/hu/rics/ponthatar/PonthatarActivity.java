@@ -4,12 +4,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.Menu;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PonthatarActivity extends Activity {
 	
     private EditText maximumText;	
+    private Spinner phtype;	
     private EditText min5pText;
     private EditText min5vText;
     private EditText max5pText;
@@ -32,6 +37,39 @@ public class PonthatarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
 		maximumText = (EditText) findViewById(R.id.maximumText);		
+		phtype = (Spinner) findViewById(R.id.phtype);		
+		phtype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+				switch( pos ) {
+				case 1: // Témazáró
+					min5pText.setText("85");
+					min4pText.setText("70");
+					min3pText.setText("55");
+					min2pText.setText("40");
+					max5pText.setText("100");
+					max4pText.setText("84");
+					max3pText.setText("69");
+					max2pText.setText("54");
+					break;
+				case 0:	// Szódolgozat
+				default:	
+					min5pText.setText("90");
+					min4pText.setText("77");
+					min3pText.setText("64");
+					min2pText.setText("51");
+					max5pText.setText("100");
+					max4pText.setText("89");
+					max3pText.setText("76");
+					max2pText.setText("63");
+					break;
+				}
+				recalc();
+			  }
+			 
+			  @Override
+			  public void onNothingSelected(AdapterView<?> arg0) {
+			  }	
+		});
     	min5pText = (EditText) findViewById(R.id.min5pText);
     	min5vText = (EditText) findViewById(R.id.min5vText);
     	max5pText = (EditText) findViewById(R.id.max5pText);
@@ -58,17 +96,20 @@ public class PonthatarActivity extends Activity {
 		    }
 
 		    public void afterTextChanged(Editable s) {
-		    	calcValue(maximumText,min5pText,min5vText);
-		    	calcValue(maximumText,max5pText,max5vText);
-		    	calcValue(maximumText,min4pText,min4vText);
-		    	calcValue(maximumText,max4pText,max4vText);
-		    	calcValue(maximumText,min3pText,min3vText);
-		    	calcValue(maximumText,max3pText,max3vText);
-		    	calcValue(maximumText,min2pText,min2vText);
-		    	calcValue(maximumText,max2pText,max2vText);
+		    	recalc();
 		    }
 		});
-    	min5pText.setText("81");
+	}
+	
+	public void recalc() {
+    	calcValue(maximumText,min5pText,min5vText);
+    	calcValue(maximumText,max5pText,max5vText);
+    	calcValue(maximumText,min4pText,min4vText);
+    	calcValue(maximumText,max4pText,max4vText);
+    	calcValue(maximumText,min3pText,min3vText);
+    	calcValue(maximumText,max3pText,max3vText);
+    	calcValue(maximumText,min2pText,min2vText);
+    	calcValue(maximumText,max2pText,max2vText);		
 	}
 	
 	public void calcValue(EditText maxPoint, EditText percentText, EditText valueText) {

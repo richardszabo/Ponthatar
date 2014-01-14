@@ -33,3 +33,5 @@ Fejlesztes:
 - Mezok felpakolasa (egyelore lista nelkul).
 - Egyszeru esemeny az egyik mezore.
 - Esemeny minden szamitando mezore.
+- Lista mukodik.
+- Tablazat meretezese elfogadhato.

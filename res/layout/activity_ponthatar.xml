@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/maximum_pont" />
-
+    
     <EditText
         android:id="@+id/maximumText"
         android:layout_width="wrap_content"
@@ -27,19 +27,32 @@
         <requestFocus />
     </EditText>
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
+    <Spinner
+        android:id="@+id/phtype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/maxTextView"
         android:layout_alignRight="@+id/maximumText"
-        android:layout_below="@+id/maximumText" >
+        android:layout_below="@+id/maximumText" 
+        android:entries="@array/ponthatarok"
+        android:prompt="@string/ponthatar_default"/>
+    
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phtype"
+        android:layout_alignRight="@+id/phtype"
+        android:layout_below="@+id/phtype"
+        android:stretchColumns="1,2,3,4" >
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:padding="2dip"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip">
 
             <TextView
                 android:id="@+id/jegyTextView"
@@ -50,38 +63,45 @@
 
             <TextView
                 android:id="@+id/minPercentTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-				android:textStyle="bold"                
-                android:text="@string/min_percent" />
+                android:gravity="center_horizontal"
+                android:text="@string/min_percent"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/maxPercentTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/max_percent" />
+                android:gravity="center_horizontal"
+                android:text="@string/max_percent"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/minValueTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/min_value" />
+                android:gravity="center_horizontal"
+                android:text="@string/min_value"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/maxValueTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/max_value" />
+                android:gravity="center"
+                android:text="@string/max_value"
+                android:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="2dip" 
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip">
 
             <TextView
                 android:id="@+id/textView5"
@@ -92,25 +112,25 @@
 
 	    <EditText
 	        android:id="@+id/min5pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/max5pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/min5vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
 	    
 	    <EditText
 	        android:id="@+id/max5vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
 	    	    	    
@@ -119,7 +139,10 @@
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+            android:padding="2dip"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip">
 
             <TextView
                 android:id="@+id/textView4"
@@ -130,25 +153,25 @@
 
 	    <EditText
 	        android:id="@+id/min4pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/max4pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/min4vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
 	    
 	    <EditText
 	        android:id="@+id/max4vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
             
@@ -157,7 +180,10 @@
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+            android:padding="2dip"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip">
 
             <TextView
                 android:id="@+id/textView3"
@@ -168,25 +194,25 @@
 
    	    <EditText
 	        android:id="@+id/min3pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/max3pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/min3vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
 	    
 	    <EditText
 	        android:id="@+id/max3vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
             
@@ -195,7 +221,10 @@
         <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+            android:padding="2dip"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip">
 
             <TextView
                 android:id="@+id/textView2"
@@ -206,30 +235,31 @@
 
    	    <EditText
 	        android:id="@+id/min2pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/max2pText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
 	        android:id="@+id/min2vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
 	    
 	    <EditText
 	        android:id="@+id/max2vText"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="number" />	
             
         </TableRow>
 
     </TableLayout>
+
 
 </RelativeLayout>

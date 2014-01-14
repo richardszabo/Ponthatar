@@ -14,4 +14,9 @@
     <string name="t3">3</string>
     <string name="t2">2</string>
 
+ 	<string-array name="ponthatarok">
+        <item>Szódolgozat</item>
+        <item>Témazáró</item>
+    </string-array>   
+    <string name="ponthatar_default">Szódolgozat</string> 
 </resources>
