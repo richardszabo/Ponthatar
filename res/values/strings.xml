@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Ponthatar</string>
+    <string name="app_name">Ponthatár</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="maximum_pont">Maximum</string>
+    <string name="jegy">Jegy</string>
+    <string name="t5">5</string>
+    <string name="t4">4</string>
+    <string name="min_percent">Alsó %</string>
+    <string name="max_percent">Felső %</string>
+    <string name="min_value">Alsó pont</string>
+    <string name="max_value">Felső pont</string>
+    <string name="t3">3</string>
+    <string name="t2">2</string>
 
 </resources>

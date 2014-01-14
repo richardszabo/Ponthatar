@@ -27,3 +27,8 @@ A fenti tablazat szodolgozatok eseten ervenyes, temazaroknal az alabbi hatarok l
 
 Vagyis, a %-os ertekeket tudni kell valtoztatni. Jo volna, ha listabol valasztva semakent 
 is be lehetne tolteni a %-os ertekeket.
+
+Fejlesztes:
+- TableLayout beallitasa.
+- Mezok felpakolasa (egyelore lista nelkul).
+- Egyszeru esemeny az egyik mezore.
