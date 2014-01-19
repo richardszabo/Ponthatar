@@ -35,3 +35,6 @@ Fejlesztes:
 - Esemeny minden szamitando mezore.
 - Lista mukodik.
 - Tablazat meretezese elfogadhato.
+
+2014. 01. 19.
+- Uj ikon.
