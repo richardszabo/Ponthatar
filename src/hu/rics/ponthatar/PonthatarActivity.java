@@ -9,28 +9,28 @@ import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class PonthatarActivity extends Activity {
 	
     private EditText maximumText;	
     private Spinner phtype;	
     private EditText min5pText;
-    private EditText min5vText;
+    private TextView min5vText;
     private EditText max5pText;
-    private EditText max5vText;
+    private TextView max5vText;
     private EditText min4pText;
-    private EditText min4vText;
+    private TextView min4vText;
     private EditText max4pText;
-    private EditText max4vText;
+    private TextView max4vText;
     private EditText min3pText;
-    private EditText min3vText;
+    private TextView min3vText;
     private EditText max3pText;
-    private EditText max3vText;
+    private TextView max3vText;
     private EditText min2pText;
-    private EditText min2vText;
+    private TextView min2vText;
     private EditText max2pText;
-    private EditText max2vText;
+    private TextView max2vText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,36 +70,47 @@ public class PonthatarActivity extends Activity {
 			  public void onNothingSelected(AdapterView<?> arg0) {
 			  }	
 		});
-    	min5pText = (EditText) findViewById(R.id.min5pText);
-    	min5vText = (EditText) findViewById(R.id.min5vText);
+		maximumText.addTextChangedListener(new OwnTextWatcher());
+		
+		min5pText = (EditText) findViewById(R.id.min5pText);
+		min5pText.addTextChangedListener(new OwnTextWatcher());		
+    	min5vText = (TextView) findViewById(R.id.min5vText);    	
     	max5pText = (EditText) findViewById(R.id.max5pText);
-    	max5vText = (EditText) findViewById(R.id.max5vText);
+    	max5pText.addTextChangedListener(new OwnTextWatcher());
+    	max5vText = (TextView) findViewById(R.id.max5vText);
     	min4pText = (EditText) findViewById(R.id.min4pText);
-    	min4vText = (EditText) findViewById(R.id.min4vText);
+    	min4pText.addTextChangedListener(new OwnTextWatcher());
+    	min4vText = (TextView) findViewById(R.id.min4vText);
     	max4pText = (EditText) findViewById(R.id.max4pText);
-    	max4vText = (EditText) findViewById(R.id.max4vText);
+    	max4pText.addTextChangedListener(new OwnTextWatcher());
+    	max4vText = (TextView) findViewById(R.id.max4vText);
     	min3pText = (EditText) findViewById(R.id.min3pText);
-    	min3vText = (EditText) findViewById(R.id.min3vText);
+    	min3pText.addTextChangedListener(new OwnTextWatcher());
+    	min3vText = (TextView) findViewById(R.id.min3vText);
     	max3pText = (EditText) findViewById(R.id.max3pText);
-    	max3vText = (EditText) findViewById(R.id.max3vText);
+    	max3pText.addTextChangedListener(new OwnTextWatcher());
+    	max3vText = (TextView) findViewById(R.id.max3vText);
     	min2pText = (EditText) findViewById(R.id.min2pText);
-    	min2vText = (EditText) findViewById(R.id.min2vText);
+    	max3pText.addTextChangedListener(new OwnTextWatcher());
+    	min2vText = (TextView) findViewById(R.id.min2vText);
     	max2pText = (EditText) findViewById(R.id.max2pText);
-    	max2vText = (EditText) findViewById(R.id.max2vText);
-    	
-		maximumText.addTextChangedListener(new TextWatcher() {
-		    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-		    }
-		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-		    }
-
-		    public void afterTextChanged(Editable s) {
-		    	recalc();
-		    }
-		});
+    	max3pText.addTextChangedListener(new OwnTextWatcher());
+    	max2vText = (TextView) findViewById(R.id.max2vText);    	
 	}
+	
+	class OwnTextWatcher implements TextWatcher {
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+	    }
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+	    }
+
+	    public void afterTextChanged(Editable s) {
+	    	recalc();
+	    }
+	}
+
 	
 	public void recalc() {
     	calcValue(maximumText,min5pText,min5vText);
@@ -112,7 +123,7 @@ public class PonthatarActivity extends Activity {
     	calcValue(maximumText,max2pText,max2vText);		
 	}
 	
-	public void calcValue(EditText maxPoint, EditText percentText, EditText valueText) {
+	public void calcValue(EditText maxPoint, EditText percentText, TextView valueText) {
 		int maxP = getNumber(maxPoint);
 		int percent = getNumber(percentText);
 	    valueText.setText(String.format("%s",((float)(maxP * percent) / 100)));

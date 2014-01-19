@@ -38,3 +38,5 @@ Fejlesztes:
 
 2014. 01. 19.
 - Uj ikon.
+- Jobb szoveg alignment.
+- Szazalekatiras is ujraszamol mindent. 
