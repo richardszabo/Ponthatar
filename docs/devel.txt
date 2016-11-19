@@ -40,3 +40,6 @@ Fejlesztes:
 - Uj ikon.
 - Jobb szoveg alignment.
 - Szazalekatiras is ujraszamol mindent. 
+
+2016. 11. 19.
+Áttérés Android Studio-ra.
