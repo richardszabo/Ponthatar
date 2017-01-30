@@ -4,12 +4,20 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
+import static android.R.attr.value;
+import static android.content.ContentValues.TAG;
+import static java.math.RoundingMode.HALF_UP;
 
 public class PonthatarActivity extends Activity {
 	
@@ -31,6 +39,7 @@ public class PonthatarActivity extends Activity {
     private TextView min2vText;
     private EditText max2pText;
     private TextView max2vText;
+	private DecimalFormat df;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,29 +82,27 @@ public class PonthatarActivity extends Activity {
 		maximumText.addTextChangedListener(new OwnTextWatcher());
 		
 		min5pText = (EditText) findViewById(R.id.min5pText);
-		min5pText.addTextChangedListener(new OwnTextWatcher());		
+		min5pText.addTextChangedListener(new OwnTextWatcher());
     	min5vText = (TextView) findViewById(R.id.min5vText);    	
     	max5pText = (EditText) findViewById(R.id.max5pText);
-    	max5pText.addTextChangedListener(new OwnTextWatcher());
     	max5vText = (TextView) findViewById(R.id.max5vText);
     	min4pText = (EditText) findViewById(R.id.min4pText);
     	min4pText.addTextChangedListener(new OwnTextWatcher());
     	min4vText = (TextView) findViewById(R.id.min4vText);
     	max4pText = (EditText) findViewById(R.id.max4pText);
-    	max4pText.addTextChangedListener(new OwnTextWatcher());
     	max4vText = (TextView) findViewById(R.id.max4vText);
     	min3pText = (EditText) findViewById(R.id.min3pText);
     	min3pText.addTextChangedListener(new OwnTextWatcher());
     	min3vText = (TextView) findViewById(R.id.min3vText);
     	max3pText = (EditText) findViewById(R.id.max3pText);
-    	max3pText.addTextChangedListener(new OwnTextWatcher());
     	max3vText = (TextView) findViewById(R.id.max3vText);
     	min2pText = (EditText) findViewById(R.id.min2pText);
-    	max3pText.addTextChangedListener(new OwnTextWatcher());
+		min2pText.addTextChangedListener(new OwnTextWatcher());
     	min2vText = (TextView) findViewById(R.id.min2vText);
     	max2pText = (EditText) findViewById(R.id.max2pText);
-    	max3pText.addTextChangedListener(new OwnTextWatcher());
-    	max2vText = (TextView) findViewById(R.id.max2vText);    	
+    	max2vText = (TextView) findViewById(R.id.max2vText);
+		df = new DecimalFormat("###");
+		df.setRoundingMode(RoundingMode.HALF_DOWN);
 	}
 	
 	class OwnTextWatcher implements TextWatcher {
@@ -107,26 +114,39 @@ public class PonthatarActivity extends Activity {
 	    }
 
 	    public void afterTextChanged(Editable s) {
-	    	recalc();
+			recalc();
 	    }
 	}
 
 	
 	public void recalc() {
-    	calcValue(maximumText,min5pText,min5vText);
-    	calcValue(maximumText,max5pText,max5vText);
-    	calcValue(maximumText,min4pText,min4vText);
-    	calcValue(maximumText,max4pText,max4vText);
-    	calcValue(maximumText,min3pText,min3vText);
-    	calcValue(maximumText,max3pText,max3vText);
-    	calcValue(maximumText,min2pText,min2vText);
-    	calcValue(maximumText,max2pText,max2vText);		
+		String max = maximumText.getText().toString();
+		if( max != null && !"".equals(max.trim())) {
+			// percents
+			try {
+				max4pText.setText(Integer.toString(Integer.valueOf(min5pText.getText().toString()) - 1));
+				max3pText.setText(Integer.toString(Integer.valueOf(min4pText.getText().toString()) - 1));
+				max2pText.setText(Integer.toString(Integer.valueOf(min3pText.getText().toString()) - 1));
+			} catch(NumberFormatException nfe) {
+				Log.d(TAG,"Invalid number");
+			}
+			// values
+			max5vText.setText(maximumText.getText());
+			calcValue(maximumText, min5pText, min5vText, max4vText);
+			calcValue(maximumText, min4pText, min4vText, max3vText);
+			calcValue(maximumText, min3pText, min3vText, max2vText);
+			calcValue(maximumText, min2pText, min2vText, null);
+		}
 	}
 	
-	public void calcValue(EditText maxPoint, EditText percentText, TextView valueText) {
+	public void calcValue(EditText maxPoint, EditText percentText, TextView upperMinValueText, TextView lowerMaxValueText) {
 		int maxP = getNumber(maxPoint);
 		int percent = getNumber(percentText);
-	    valueText.setText(String.format("%s",((float)(maxP * percent) / 100)));
+		String value = df.format((float)(maxP * percent) / 100);
+		upperMinValueText.setText(value);
+		if( lowerMaxValueText != null ) {
+			lowerMaxValueText.setText(Integer.toString(Integer.valueOf(value) - 1));
+		}
 	}
 	
 	public int getNumber(EditText text) {

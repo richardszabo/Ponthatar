@@ -122,7 +122,8 @@
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
-	        android:inputType="numberDecimal" />	
+	        android:inputType="numberDecimal"
+			android:enabled="false" />
 	    
 	    <TextView
 	        android:id="@+id/min5vText"
@@ -165,7 +166,8 @@
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
-	        android:inputType="numberDecimal" />	
+	        android:inputType="numberDecimal"
+			android:enabled="false"/>
 	    
 	    <TextView
 	        android:id="@+id/min4vText"
@@ -208,7 +210,8 @@
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:inputType="numberDecimal" />	
+	        android:inputType="numberDecimal"
+			android:enabled="false"/>
 	    
 	    <TextView
 	        android:id="@+id/min3vText"
@@ -251,7 +254,8 @@
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:inputType="numberDecimal" />	
+	        android:inputType="numberDecimal"
+			android:enabled="false"/>
 	    
 	    <TextView
 	        android:id="@+id/min2vText"
