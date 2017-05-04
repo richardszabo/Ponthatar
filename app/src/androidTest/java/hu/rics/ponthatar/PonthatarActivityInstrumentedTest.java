@@ -28,13 +28,6 @@ import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static hu.rics.ponthatar.R.id.max2pText;
-import static hu.rics.ponthatar.R.id.max3pText;
-import static hu.rics.ponthatar.R.id.max4pText;
-import static hu.rics.ponthatar.R.id.max5pText;
-import static hu.rics.ponthatar.R.id.min2pText;
-import static hu.rics.ponthatar.R.id.min3pText;
-import static hu.rics.ponthatar.R.id.min4pText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
@@ -149,4 +142,26 @@ public class PonthatarActivityInstrumentedTest {
 
     }
 
+    void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
+        int testNumber = 55;
+        int percent = 83;
+        onView(withId(R.id.maximumText)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
+        onView(withId(idOfUpperGradeMinPercentField)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
+        onView(withId(idOfLowerGradeMaxPercentField)).check(matches(withText(Integer.toString(percent - 1))));
+    }
+
+    @Test
+    public void recalc_max4PercentSet() {
+        recalc_maxPercentSet(R.id.min5pText,R.id.max4pText);
+    }
+
+    @Test
+    public void recalc_max3PercentSet() {
+        recalc_maxPercentSet(R.id.min4pText,R.id.max3pText);
+    }
+
+    @Test
+    public void recalc_max2PercentSet() {
+        recalc_maxPercentSet(R.id.min3pText,R.id.max2pText);
+    }
 }
