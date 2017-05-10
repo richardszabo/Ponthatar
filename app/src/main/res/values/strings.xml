@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Ponthatár</string>
+    <string name="applicationName">Ponthatár</string>
     <string name="action_settings">Settings</string>
-    <string name="maximum_pont">Maximum</string>
-    <string name="jegy">Jegy</string>
-    <string name="t5">5</string>
-    <string name="t4">4</string>
-    <string name="min_percent">Alsó %</string>
-    <string name="max_percent">Felső %</string>
-    <string name="min_value">Alsó pont</string>
-    <string name="max_value">Felső pont</string>
-    <string name="t3">3</string>
-    <string name="t2">2</string>
+    <string name="overallMaximalPoint">Maximum</string>
+    <string name="grade">Jegy</string>
+    <string name="minimalPercentage">Alsó %</string>
+    <string name="maximalPercentage">Felső %</string>
+    <string name="minimalPoint">Alsó pont</string>
+    <string name="maximalPoint">Felső pont</string>
+    <string name="grade5">5</string>
+    <string name="grade4">4</string>
+    <string name="grade3">3</string>
+    <string name="grade2">2</string>
 
- 	<string-array name="ponthatarok">
+ 	<string-array name="testPaperTypes">
         <item>Szódolgozat</item>
         <item>Témazáró</item>
     </string-array>   
-    <string name="ponthatar_default">Szódolgozat</string> 
+    <string name="testPaperTypeDefaultValue">Szódolgozat</string>
 </resources>

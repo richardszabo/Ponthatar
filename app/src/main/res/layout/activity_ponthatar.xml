@@ -9,18 +9,18 @@
     tools:context=".PonthatarActivity" >
 
     <TextView
-        android:id="@+id/maxTextView"
+        android:id="@+id/overallMaximalPointLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/maximum_pont" />
+        android:text="@string/overallMaximalPoint" />
     
     <EditText
-        android:id="@+id/maximumText"
+        android:id="@+id/overallMaximalPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/maxTextView"
+        android:layout_alignTop="@+id/overallMaximalPointLabel"
         android:layout_marginLeft="19dp"
-        android:layout_toRightOf="@+id/maxTextView"
+        android:layout_toRightOf="@+id/overallMaximalPointLabel"
         android:ems="10"
         android:inputType="numberDecimal" >
 
@@ -28,22 +28,22 @@
     </EditText>
 
     <Spinner
-        android:id="@+id/phtype"
+        android:id="@+id/testPaperType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/maxTextView"
-        android:layout_alignRight="@+id/maximumText"
-        android:layout_below="@+id/maximumText" 
-        android:entries="@array/ponthatarok"
-        android:prompt="@string/ponthatar_default"/>
+        android:layout_alignLeft="@+id/overallMaximalPointLabel"
+        android:layout_alignRight="@+id/overallMaximalPoint"
+        android:layout_below="@+id/overallMaximalPoint"
+        android:entries="@array/testPaperTypes"
+        android:prompt="@string/testPaperTypeDefaultValue"/>
     
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/phtype"
-        android:layout_alignRight="@+id/phtype"
-        android:layout_below="@+id/phtype"
+        android:layout_alignLeft="@+id/testPaperType"
+        android:layout_alignRight="@+id/testPaperType"
+        android:layout_below="@+id/testPaperType"
         android:stretchColumns="1,2,3,4" >
 
         <TableRow
@@ -55,42 +55,42 @@
             android:layout_marginRight="1dip">
 
             <TextView
-                android:id="@+id/jegyTextView"
+                android:id="@+id/gradeLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/jegy" />
+                android:text="@string/grade" />
 
             <TextView
-                android:id="@+id/minPercentTextView"
+                android:id="@+id/minimalPercentageLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/min_percent"
+                android:text="@string/minimalPercentage"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/maxPercentTextView"
+                android:id="@+id/maximalPercentageLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/max_percent"
+                android:text="@string/maximalPercentage"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/minValueTextView"
+                android:id="@+id/minimalPointLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/min_value"
+                android:text="@string/minimalPoint"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/maxValueTextView"
+                android:id="@+id/maximalPointLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/max_value"
+                android:text="@string/maximalPoint"
                 android:textStyle="bold" />
 
         </TableRow>
@@ -104,21 +104,21 @@
             android:layout_marginRight="1dip">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/grade5Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/t5" />
+                android:text="@string/grade5" />
 
 	    <EditText
-	        android:id="@+id/min5pText"
+	        android:id="@+id/grade5MinimalPercentage"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
-	        android:id="@+id/max5pText"
+	        android:id="@+id/grade5MaximalPercentage"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
@@ -126,13 +126,13 @@
 			android:enabled="false" />
 	    
 	    <TextView
-	        android:id="@+id/min5vText"
+	        android:id="@+id/grade5MinimalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
 	    
 	    <TextView
-	        android:id="@+id/max5vText"
+	        android:id="@+id/grade5MaximalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
@@ -148,21 +148,21 @@
             android:layout_marginRight="1dip">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/grade4Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 		        android:gravity="center"
-                android:text="@string/t4" />
+                android:text="@string/grade4" />
 
 	    <EditText
-	        android:id="@+id/min4pText"
+	        android:id="@+id/grade4MinimalPercentage"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
-	        android:id="@+id/max4pText"
+	        android:id="@+id/grade4MaximalPercentage"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
@@ -170,13 +170,13 @@
 			android:enabled="false"/>
 	    
 	    <TextView
-	        android:id="@+id/min4vText"
+	        android:id="@+id/grade4MinimalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
 	    
 	    <TextView
-	        android:id="@+id/max4vText"
+	        android:id="@+id/grade4MaximalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
@@ -192,21 +192,21 @@
             android:layout_marginRight="1dip">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/grade3Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
      	        android:gravity="center"
-                android:text="@string/t3" />
+                android:text="@string/grade3" />
 
    	    <EditText
-	        android:id="@+id/min3pText"
+	        android:id="@+id/grade3MinimalPercentage"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
-	        android:id="@+id/max3pText"
+	        android:id="@+id/grade3MaximalPercentage"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
@@ -214,13 +214,13 @@
 			android:enabled="false"/>
 	    
 	    <TextView
-	        android:id="@+id/min3vText"
+	        android:id="@+id/grade3MinimalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
 	    
 	    <TextView
-	        android:id="@+id/max3vText"
+	        android:id="@+id/grade3MaximalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
@@ -236,21 +236,21 @@
             android:layout_marginRight="1dip">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/grade2Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 		        android:gravity="center"
-                android:text="@string/t2" />
+                android:text="@string/grade2" />
 
    	    <EditText
-	        android:id="@+id/min2pText"
+	        android:id="@+id/grade2MinimalPercentage"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:inputType="numberDecimal" />	
 	    
 	    <EditText
-	        android:id="@+id/max2pText"
+	        android:id="@+id/grade2MaximalPercentage"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
@@ -258,13 +258,13 @@
 			android:enabled="false"/>
 	    
 	    <TextView
-	        android:id="@+id/min2vText"
+	        android:id="@+id/grade2MinimalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	
 	    
 	    <TextView
-	        android:id="@+id/max2vText"
+	        android:id="@+id/grade2MaximalPoint"
 	        android:gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"/>	

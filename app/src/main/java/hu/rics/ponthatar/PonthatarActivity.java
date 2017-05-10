@@ -15,9 +15,7 @@ import android.widget.TextView;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import static android.R.attr.value;
 import static android.content.ContentValues.TAG;
-import static java.math.RoundingMode.HALF_UP;
 
 public class PonthatarActivity extends Activity {
 	
@@ -45,8 +43,8 @@ public class PonthatarActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
-		maximumText = (EditText) findViewById(R.id.maximumText);		
-		phtype = (Spinner) findViewById(R.id.phtype);		
+		maximumText = (EditText) findViewById(R.id.overallMaximalPoint);
+		phtype = (Spinner) findViewById(R.id.testPaperType);
 		phtype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
@@ -81,26 +79,26 @@ public class PonthatarActivity extends Activity {
 		});
 		maximumText.addTextChangedListener(new OwnTextWatcher());
 		
-		min5pText = (EditText) findViewById(R.id.min5pText);
+		min5pText = (EditText) findViewById(R.id.grade5MinimalPercentage);
 		min5pText.addTextChangedListener(new OwnTextWatcher());
-    	min5vText = (TextView) findViewById(R.id.min5vText);    	
-    	max5pText = (EditText) findViewById(R.id.max5pText);
-    	max5vText = (TextView) findViewById(R.id.max5vText);
-    	min4pText = (EditText) findViewById(R.id.min4pText);
+    	min5vText = (TextView) findViewById(R.id.grade5MinimalPoint);
+    	max5pText = (EditText) findViewById(R.id.grade5MaximalPercentage);
+    	max5vText = (TextView) findViewById(R.id.grade5MaximalPoint);
+    	min4pText = (EditText) findViewById(R.id.grade4MinimalPercentage);
     	min4pText.addTextChangedListener(new OwnTextWatcher());
-    	min4vText = (TextView) findViewById(R.id.min4vText);
-    	max4pText = (EditText) findViewById(R.id.max4pText);
-    	max4vText = (TextView) findViewById(R.id.max4vText);
-    	min3pText = (EditText) findViewById(R.id.min3pText);
+    	min4vText = (TextView) findViewById(R.id.grade4MinimalPoint);
+    	max4pText = (EditText) findViewById(R.id.grade4MaximalPercentage);
+    	max4vText = (TextView) findViewById(R.id.grade4MaximalPoint);
+    	min3pText = (EditText) findViewById(R.id.grade3MinimalPercentage);
     	min3pText.addTextChangedListener(new OwnTextWatcher());
-    	min3vText = (TextView) findViewById(R.id.min3vText);
-    	max3pText = (EditText) findViewById(R.id.max3pText);
-    	max3vText = (TextView) findViewById(R.id.max3vText);
-    	min2pText = (EditText) findViewById(R.id.min2pText);
+    	min3vText = (TextView) findViewById(R.id.grade3MinimalPoint);
+    	max3pText = (EditText) findViewById(R.id.grade3MaximalPercentage);
+    	max3vText = (TextView) findViewById(R.id.grade3MaximalPoint);
+    	min2pText = (EditText) findViewById(R.id.grade2MinimalPercentage);
 		min2pText.addTextChangedListener(new OwnTextWatcher());
-    	min2vText = (TextView) findViewById(R.id.min2vText);
-    	max2pText = (EditText) findViewById(R.id.max2pText);
-    	max2vText = (TextView) findViewById(R.id.max2vText);
+    	min2vText = (TextView) findViewById(R.id.grade2MinimalPoint);
+    	max2pText = (EditText) findViewById(R.id.grade2MaximalPercentage);
+    	max2vText = (TextView) findViewById(R.id.grade2MaximalPoint);
 		df = new DecimalFormat("###");
 		df.setRoundingMode(RoundingMode.HALF_DOWN);
 	}

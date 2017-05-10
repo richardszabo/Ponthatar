@@ -2,15 +2,11 @@ package hu.rics.ponthatar;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.junit.Before;
@@ -58,14 +54,14 @@ public class PonthatarActivityInstrumentedTest {
     @Test
     public void getNumber_validNumber() {
         int testNumber = 23;
-        onView(withId(R.id.maximumText)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
-        assertEquals(testNumber, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.maximumText)));
+        onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
+        assertEquals(testNumber, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint)));
     }
 
     @Test
     public void getNumber_invalidNumber() {
-        onView(withId(R.id.maximumText)).perform(replaceText("alma"), closeSoftKeyboard());
-        assertEquals(0, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.maximumText)));
+        onView(withId(R.id.overallMaximalPoint)).perform(replaceText("alma"), closeSoftKeyboard());
+        assertEquals(0, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint)));
     }
 
     @Test
@@ -76,16 +72,16 @@ public class PonthatarActivityInstrumentedTest {
         float lowerMaxValue = (float) maxPoint * percent / 100 - 1;
         DecimalFormat df = new DecimalFormat("###");
         df.setRoundingMode(RoundingMode.HALF_DOWN);
-        onView(withId(R.id.maximumText)).perform(replaceText(Integer.toString(maxPoint)), closeSoftKeyboard());
-        onView(withId(R.id.min5pText)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
+        onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(maxPoint)), closeSoftKeyboard());
+        onView(withId(R.id.grade5MinimalPercentage)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
         ponthatarActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 ponthatarActivity.calcValue(
-                        (EditText) ponthatarActivity.findViewById(R.id.maximumText),
-                        (EditText) ponthatarActivity.findViewById(R.id.min5pText),
-                        (TextView) ponthatarActivity.findViewById(R.id.min5vText),
-                        (TextView) ponthatarActivity.findViewById(R.id.max4vText));
+                        (EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint),
+                        (EditText) ponthatarActivity.findViewById(R.id.grade5MinimalPercentage),
+                        (TextView) ponthatarActivity.findViewById(R.id.grade5MinimalPoint),
+                        (TextView) ponthatarActivity.findViewById(R.id.grade4MaximalPoint));
                 synchronized (ponthatarActivity) {
                     ponthatarActivity.notify();
                 }
@@ -93,12 +89,12 @@ public class PonthatarActivityInstrumentedTest {
         });
         try {
             synchronized (ponthatarActivity) {
-                while (((TextView) ponthatarActivity.findViewById(R.id.min5vText)).getText().length() == 0) {
+                while (((TextView) ponthatarActivity.findViewById(R.id.grade5MinimalPoint)).getText().length() == 0) {
                     ponthatarActivity.wait();
                 }
             }
-            onView(withId(R.id.min5vText)).check(matches(withText(df.format(upperMinValue))));
-            onView(withId(R.id.max4vText)).check(matches(withText(df.format(lowerMaxValue))));
+            onView(withId(R.id.grade5MinimalPoint)).check(matches(withText(df.format(upperMinValue))));
+            onView(withId(R.id.grade4MaximalPoint)).check(matches(withText(df.format(lowerMaxValue))));
         } catch (InterruptedException ie) {
             Log.e("PAITest", "Cannot run test:" + ie);
         }
@@ -106,46 +102,46 @@ public class PonthatarActivityInstrumentedTest {
 
     @Test
     public void onCreate_spinnerCorrectlySetup() {
-        onData(instanceOf(String.class)).inAdapterView(withId(R.id.phtype))
+        onData(instanceOf(String.class)).inAdapterView(withId(R.id.testPaperType))
                 .atPosition(0)
                 .check(matches(withText("Szódolgozat")));
-        onData(instanceOf(String.class)).inAdapterView(withId(R.id.phtype))
+        onData(instanceOf(String.class)).inAdapterView(withId(R.id.testPaperType))
                 .atPosition(1)
                 .check(matches(withText("Témazáró")));
     }
 
     @Test
     public void onCreate_percentsCorrectlySetupForTemazaro() {
-        onView(withId(R.id.phtype)).perform(click());
+        onView(withId(R.id.testPaperType)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Témazáró"))).perform(click());
-        onView(withId(R.id.min5pText)).check(matches(withText("85")));
-        onView(withId(R.id.min4pText)).check(matches(withText("70")));
-        onView(withId(R.id.min3pText)).check(matches(withText("55")));
-        onView(withId(R.id.min2pText)).check(matches(withText("40")));
-        onView(withId(R.id.max5pText)).check(matches(withText("100")));
-        onView(withId(R.id.max4pText)).check(matches(withText("84")));
-        onView(withId(R.id.max3pText)).check(matches(withText("69")));
-        onView(withId(R.id.max2pText)).check(matches(withText("54")));
+        onView(withId(R.id.grade5MinimalPercentage)).check(matches(withText("85")));
+        onView(withId(R.id.grade4MinimalPercentage)).check(matches(withText("70")));
+        onView(withId(R.id.grade3MinimalPercentage)).check(matches(withText("55")));
+        onView(withId(R.id.grade2MinimalPercentage)).check(matches(withText("40")));
+        onView(withId(R.id.grade5MaximalPercentage)).check(matches(withText("100")));
+        onView(withId(R.id.grade4MaximalPercentage)).check(matches(withText("84")));
+        onView(withId(R.id.grade3MaximalPercentage)).check(matches(withText("69")));
+        onView(withId(R.id.grade2MaximalPercentage)).check(matches(withText("54")));
     }
 
     @Test
     public void onCreate_percentsCorrectlySetupForSzodolgozat() {
-        onView(withId(R.id.phtype)).perform(click());
+        onView(withId(R.id.testPaperType)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Szódolgozat"))).perform(click());
-        onView(withId(R.id.min5pText)).check(matches(withText("90")));
-        onView(withId(R.id.min4pText)).check(matches(withText("77")));
-        onView(withId(R.id.min3pText)).check(matches(withText("64")));
-        onView(withId(R.id.min2pText)).check(matches(withText("51")));
-        onView(withId(R.id.max5pText)).check(matches(withText("100")));
-        onView(withId(R.id.max4pText)).check(matches(withText("89")));
-        onView(withId(R.id.max3pText)).check(matches(withText("76")));
-        onView(withId(R.id.max2pText)).check(matches(withText("63")));
+        onView(withId(R.id.grade5MinimalPercentage)).check(matches(withText("90")));
+        onView(withId(R.id.grade4MinimalPercentage)).check(matches(withText("77")));
+        onView(withId(R.id.grade3MinimalPercentage)).check(matches(withText("64")));
+        onView(withId(R.id.grade2MinimalPercentage)).check(matches(withText("51")));
+        onView(withId(R.id.grade5MaximalPercentage)).check(matches(withText("100")));
+        onView(withId(R.id.grade4MaximalPercentage)).check(matches(withText("89")));
+        onView(withId(R.id.grade3MaximalPercentage)).check(matches(withText("76")));
+        onView(withId(R.id.grade2MaximalPercentage)).check(matches(withText("63")));
 
     }
 
     void recalc_init() {
         int testNumber = 55;
-        onView(withId(R.id.maximumText)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
+        onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
     }
 
     void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
@@ -157,26 +153,26 @@ public class PonthatarActivityInstrumentedTest {
     @Test
     public void recalc_max4PercentSet() {
         recalc_init();
-        recalc_maxPercentSet(R.id.min5pText,R.id.max4pText);
+        recalc_maxPercentSet(R.id.grade5MinimalPercentage,R.id.grade4MaximalPercentage);
     }
 
     @Test
     public void recalc_max3PercentSet() {
         recalc_init();
-        recalc_maxPercentSet(R.id.min4pText,R.id.max3pText);
+        recalc_maxPercentSet(R.id.grade4MinimalPercentage,R.id.grade3MaximalPercentage);
     }
 
     @Test
     public void recalc_max2PercentSet() {
         recalc_init();
-        recalc_maxPercentSet(R.id.min3pText,R.id.max2pText);
+        recalc_maxPercentSet(R.id.grade3MinimalPercentage,R.id.grade2MaximalPercentage);
     }
 
     @Test
     public void recalc_max5ValueSet() {
         recalc_init();
-        EditText maximumValueText = (EditText)ponthatarActivity.findViewById(R.id.maximumText);
-        onView(withId(R.id.max5vText)).check(matches(withText(maximumValueText.getText().toString())));
+        EditText maximumValueText = (EditText)ponthatarActivity.findViewById(R.id.overallMaximalPoint);
+        onView(withId(R.id.grade5MaximalPoint)).check(matches(withText(maximumValueText.getText().toString())));
     }
 
 }
