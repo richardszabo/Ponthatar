@@ -12,11 +12,11 @@ public class AllGrades {
     Grade grade2;
 
     AllGrades() {
-        setTestPaperType(TestPaperType.SZODOLGOZAT);
         grade5 = new Grade();
         grade4 = new Grade();
         grade3 = new Grade();
         grade2 = new Grade();
+        setTestPaperType(TestPaperType.SZODOLGOZAT);
     }
 
     void setTestPaperType(TestPaperType testPaperType) {

@@ -38,38 +38,35 @@ public class PonthatarActivity extends Activity {
     private EditText grade2MaximalPercentageField;
     private TextView grade2MaximalPointField;
 	private DecimalFormat df;
+	AllGrades allGrades;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
+		allGrades = new AllGrades();
+		allGrades.setTestPaperType(TestPaperType.SZODOLGOZAT);
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
 		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);
 		testPaperTypeField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
 				case 1: // Témazáró
-					grade5MinimalPercentageField.setText("85");
-					grade4MinimalPercentageField.setText("70");
-					grade3MinimalPercentageField.setText("55");
-					grade2MinimalPercentageField.setText("40");
-					grade5MaximalPercentageField.setText("100");
-					grade4MaximalPercentageField.setText("84");
-					grade3MaximalPercentageField.setText("69");
-					grade2MaximalPercentageField.setText("54");
+					allGrades.setTestPaperType(TestPaperType.TEMAZARO);
 					break;
 				case 0:	// Szódolgozat
-				default:	
-					grade5MinimalPercentageField.setText("90");
-					grade4MinimalPercentageField.setText("77");
-					grade3MinimalPercentageField.setText("64");
-					grade2MinimalPercentageField.setText("51");
-					grade5MaximalPercentageField.setText("100");
-					grade4MaximalPercentageField.setText("89");
-					grade3MaximalPercentageField.setText("76");
-					grade2MaximalPercentageField.setText("63");
+				default:
+					allGrades.setTestPaperType(TestPaperType.SZODOLGOZAT);
 					break;
 				}
+				grade5MinimalPercentageField.setText(Integer.toString(allGrades.grade5.getMinimalPercentage()));
+				grade4MinimalPercentageField.setText(Integer.toString(allGrades.grade4.getMinimalPercentage()));
+				grade3MinimalPercentageField.setText(Integer.toString(allGrades.grade3.getMinimalPercentage()));
+				grade2MinimalPercentageField.setText(Integer.toString(allGrades.grade2.getMinimalPercentage()));
+				grade5MaximalPercentageField.setText(Integer.toString(allGrades.grade5.getMaximalPercentage()));
+				grade4MaximalPercentageField.setText(Integer.toString(allGrades.grade4.getMaximalPercentage()));
+				grade3MaximalPercentageField.setText(Integer.toString(allGrades.grade3.getMaximalPercentage()));
+				grade2MaximalPercentageField.setText(Integer.toString(allGrades.grade2.getMaximalPercentage()));
 				recalc();
 			  }
 			 
