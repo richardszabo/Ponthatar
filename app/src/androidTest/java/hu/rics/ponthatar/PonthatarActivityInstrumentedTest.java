@@ -8,6 +8,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -142,26 +143,40 @@ public class PonthatarActivityInstrumentedTest {
 
     }
 
-    void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
+    void recalc_init() {
         int testNumber = 55;
-        int percent = 83;
         onView(withId(R.id.maximumText)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
+    }
+
+    void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
+        int percent = 83;
         onView(withId(idOfUpperGradeMinPercentField)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
         onView(withId(idOfLowerGradeMaxPercentField)).check(matches(withText(Integer.toString(percent - 1))));
     }
 
     @Test
     public void recalc_max4PercentSet() {
+        recalc_init();
         recalc_maxPercentSet(R.id.min5pText,R.id.max4pText);
     }
 
     @Test
     public void recalc_max3PercentSet() {
+        recalc_init();
         recalc_maxPercentSet(R.id.min4pText,R.id.max3pText);
     }
 
     @Test
     public void recalc_max2PercentSet() {
+        recalc_init();
         recalc_maxPercentSet(R.id.min3pText,R.id.max2pText);
     }
+
+    @Test
+    public void recalc_max5ValueSet() {
+        recalc_init();
+        EditText maximumValueText = (EditText)ponthatarActivity.findViewById(R.id.maximumText);
+        onView(withId(R.id.max5vText)).check(matches(withText(maximumValueText.getText().toString())));
+    }
+
 }
