@@ -3,8 +3,6 @@ package hu.rics.ponthatar;
 import lombok.Getter;
 import lombok.Setter;
 
-import static hu.rics.ponthatar.R.string.grade;
-
 public class AllGrades {
 
     @Getter

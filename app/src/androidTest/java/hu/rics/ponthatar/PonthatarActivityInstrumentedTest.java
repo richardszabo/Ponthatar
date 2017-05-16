@@ -65,42 +65,6 @@ public class PonthatarActivityInstrumentedTest {
     }
 
     @Test
-    public void calcValue_valuesSet() {
-        int maxPoint = 55;
-        int percent = 85;
-        float upperMinValue = (float) maxPoint * percent / 100;
-        float lowerMaxValue = (float) maxPoint * percent / 100 - 1;
-        DecimalFormat df = new DecimalFormat("###");
-        df.setRoundingMode(RoundingMode.HALF_DOWN);
-        onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(maxPoint)), closeSoftKeyboard());
-        onView(withId(R.id.grade5MinimalPercentage)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
-        ponthatarActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ponthatarActivity.calcValue(
-                        (EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint),
-                        (EditText) ponthatarActivity.findViewById(R.id.grade5MinimalPercentage),
-                        (TextView) ponthatarActivity.findViewById(R.id.grade5MinimalPoint),
-                        (TextView) ponthatarActivity.findViewById(R.id.grade4MaximalPoint));
-                synchronized (ponthatarActivity) {
-                    ponthatarActivity.notify();
-                }
-            }
-        });
-        try {
-            synchronized (ponthatarActivity) {
-                while (((TextView) ponthatarActivity.findViewById(R.id.grade5MinimalPoint)).getText().length() == 0) {
-                    ponthatarActivity.wait();
-                }
-            }
-            onView(withId(R.id.grade5MinimalPoint)).check(matches(withText(df.format(upperMinValue))));
-            onView(withId(R.id.grade4MaximalPoint)).check(matches(withText(df.format(lowerMaxValue))));
-        } catch (InterruptedException ie) {
-            Log.e("PAITest", "Cannot run test:" + ie);
-        }
-    }
-
-    @Test
     public void onCreate_spinnerCorrectlySetup() {
         onData(instanceOf(String.class)).inAdapterView(withId(R.id.testPaperType))
                 .atPosition(0)
