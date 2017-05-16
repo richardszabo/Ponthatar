@@ -16,10 +16,10 @@ public class AllGrades {
         grade4 = new Grade();
         grade3 = new Grade();
         grade2 = new Grade();
-        setTestPaperType(TestPaperType.SZODOLGOZAT);
+        setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
     }
 
-    void setTestPaperType(TestPaperType testPaperType) {
+    void setTestPaperTypeAndGradePercentages(TestPaperType testPaperType) {
         this.testPaperType = testPaperType;
         setGradePercentages();
     }

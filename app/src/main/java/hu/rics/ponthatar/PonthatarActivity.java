@@ -45,18 +45,18 @@ public class PonthatarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
 		allGrades = new AllGrades();
-		allGrades.setTestPaperType(TestPaperType.SZODOLGOZAT);
+		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
 		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);
 		testPaperTypeField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
 				case 1: // Témazáró
-					allGrades.setTestPaperType(TestPaperType.TEMAZARO);
+					allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.TEMAZARO);
 					break;
 				case 0:	// Szódolgozat
 				default:
-					allGrades.setTestPaperType(TestPaperType.SZODOLGOZAT);
+					allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 					break;
 				}
 				grade5MinimalPercentageField.setText(Integer.toString(allGrades.grade5.getMinimalPercentage()));
