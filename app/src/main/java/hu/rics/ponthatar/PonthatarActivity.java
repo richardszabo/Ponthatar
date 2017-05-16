@@ -32,24 +32,61 @@ public class PonthatarActivity extends Activity {
     private EditText grade3MinimalPercentageField;
     private TextView grade3MinimalPointField;
     private EditText grade3MaximalPercentageField;
-    private TextView grade3MaimalPointField;
+    private TextView grade3MaximalPointField;
     private EditText grade2MinimalPercentageField;
     private TextView grade2MinimalPointField;
     private EditText grade2MaximalPercentageField;
     private TextView grade2MaximalPointField;
 	private DecimalFormat df;
-	Grade grade2, grade3, grade4, grade5;
+	GradeImplWithUIFields grade2, grade3, grade4, grade5;
 	AllGrades allGrades;
+
+	void initFields() {
+		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
+		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);
+		grade2MinimalPercentageField = (EditText) findViewById(R.id.grade2MinimalPercentage);
+		grade2MinimalPointField = (TextView) findViewById(R.id.grade2MinimalPoint);
+		grade2MaximalPercentageField = (EditText) findViewById(R.id.grade2MaximalPercentage);
+		grade2MaximalPointField = (TextView) findViewById(R.id.grade2MaximalPoint);
+		grade3MinimalPercentageField = (EditText) findViewById(R.id.grade3MinimalPercentage);
+		grade3MinimalPointField = (TextView) findViewById(R.id.grade3MinimalPoint);
+		grade3MaximalPercentageField = (EditText) findViewById(R.id.grade3MaximalPercentage);
+		grade3MaximalPointField = (TextView) findViewById(R.id.grade3MaximalPoint);
+		grade4MinimalPercentageField = (EditText) findViewById(R.id.grade4MinimalPercentage);
+		grade4MinimalPointField = (TextView) findViewById(R.id.grade4MinimalPoint);
+		grade4MaximalPercentageField = (EditText) findViewById(R.id.grade4MaximalPercentage);
+		grade4MaximalPointField = (TextView) findViewById(R.id.grade4MaximalPoint);
+		grade5MinimalPercentageField = (EditText) findViewById(R.id.grade5MinimalPercentage);
+		grade5MinimalPointField = (TextView) findViewById(R.id.grade5MinimalPoint);
+		grade5MaximalPercentageField = (EditText) findViewById(R.id.grade5MaximalPercentage);
+		grade5MaximalPointField = (TextView) findViewById(R.id.grade5MaximalPoint);
+	}
 
 	void initGrades() {
 		allGrades = new AllGrades();
 		grade2 = new GradeImplWithUIFields();
+		grade2.setMinimalPercentageField(grade2MinimalPercentageField);
+		grade2.setMaximalPercentageField(grade2MaximalPercentageField);
+		grade2.setMinimalPointField(grade2MinimalPointField);
+		grade2.setMaximalPointField(grade2MaximalPointField);
 		allGrades.setGrade2(grade2);
 		grade3 = new GradeImplWithUIFields();
+		grade3.setMinimalPercentageField(grade3MinimalPercentageField);
+		grade3.setMaximalPercentageField(grade3MaximalPercentageField);
+		grade3.setMinimalPointField(grade3MinimalPointField);
+		grade3.setMaximalPointField(grade3MaximalPointField);
 		allGrades.setGrade3(grade3);
 		grade4 = new GradeImplWithUIFields();
+		grade4.setMinimalPercentageField(grade4MinimalPercentageField);
+		grade4.setMaximalPercentageField(grade4MaximalPercentageField);
+		grade4.setMinimalPointField(grade4MinimalPointField);
+		grade4.setMaximalPointField(grade4MaximalPointField);
 		allGrades.setGrade4(grade4);
 		grade5 = new GradeImplWithUIFields();
+		grade5.setMinimalPercentageField(grade5MinimalPercentageField);
+		grade5.setMaximalPercentageField(grade5MaximalPercentageField);
+		grade5.setMinimalPointField(grade5MinimalPointField);
+		grade5.setMaximalPointField(grade5MaximalPointField);
 		allGrades.setGrade5(grade5);
 		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 	}
@@ -58,9 +95,8 @@ public class PonthatarActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
+		initFields();
 		initGrades();
-		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
-		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);
 		testPaperTypeField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
@@ -72,14 +108,7 @@ public class PonthatarActivity extends Activity {
 					allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 					break;
 				}
-				grade5MinimalPercentageField.setText(Integer.toString(allGrades.grade5.getMinimalPercentage()));
-				grade4MinimalPercentageField.setText(Integer.toString(allGrades.grade4.getMinimalPercentage()));
-				grade3MinimalPercentageField.setText(Integer.toString(allGrades.grade3.getMinimalPercentage()));
-				grade2MinimalPercentageField.setText(Integer.toString(allGrades.grade2.getMinimalPercentage()));
-				grade5MaximalPercentageField.setText(Integer.toString(allGrades.grade5.getMaximalPercentage()));
-				grade4MaximalPercentageField.setText(Integer.toString(allGrades.grade4.getMaximalPercentage()));
-				grade3MaximalPercentageField.setText(Integer.toString(allGrades.grade3.getMaximalPercentage()));
-				grade2MaximalPercentageField.setText(Integer.toString(allGrades.grade2.getMaximalPercentage()));
+				allGrades.setGradePercentages();
 				recalc();
 			  }
 			 
@@ -88,27 +117,11 @@ public class PonthatarActivity extends Activity {
 			  }	
 		});
 		overallMaximalPointField.addTextChangedListener(new OwnTextWatcher());
-		
-		grade5MinimalPercentageField = (EditText) findViewById(R.id.grade5MinimalPercentage);
+
 		grade5MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade5MinimalPointField = (TextView) findViewById(R.id.grade5MinimalPoint);
-    	grade5MaximalPercentageField = (EditText) findViewById(R.id.grade5MaximalPercentage);
-    	grade5MaximalPointField = (TextView) findViewById(R.id.grade5MaximalPoint);
-    	grade4MinimalPercentageField = (EditText) findViewById(R.id.grade4MinimalPercentage);
     	grade4MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade4MinimalPointField = (TextView) findViewById(R.id.grade4MinimalPoint);
-    	grade4MaximalPercentageField = (EditText) findViewById(R.id.grade4MaximalPercentage);
-    	grade4MaximalPointField = (TextView) findViewById(R.id.grade4MaximalPoint);
-    	grade3MinimalPercentageField = (EditText) findViewById(R.id.grade3MinimalPercentage);
     	grade3MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade3MinimalPointField = (TextView) findViewById(R.id.grade3MinimalPoint);
-    	grade3MaximalPercentageField = (EditText) findViewById(R.id.grade3MaximalPercentage);
-    	grade3MaimalPointField = (TextView) findViewById(R.id.grade3MaximalPoint);
-    	grade2MinimalPercentageField = (EditText) findViewById(R.id.grade2MinimalPercentage);
 		grade2MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade2MinimalPointField = (TextView) findViewById(R.id.grade2MinimalPoint);
-    	grade2MaximalPercentageField = (EditText) findViewById(R.id.grade2MaximalPercentage);
-    	grade2MaximalPointField = (TextView) findViewById(R.id.grade2MaximalPoint);
 		df = new DecimalFormat("###");
 		df.setRoundingMode(RoundingMode.HALF_DOWN);
 	}
@@ -141,7 +154,7 @@ public class PonthatarActivity extends Activity {
 			// values
 			grade5MaximalPointField.setText(overallMaximalPointField.getText());
 			calcValue(overallMaximalPointField, grade5MinimalPercentageField, grade5MinimalPointField, grade4MaximalPointField);
-			calcValue(overallMaximalPointField, grade4MinimalPercentageField, grade4MinimalPointField, grade3MaimalPointField);
+			calcValue(overallMaximalPointField, grade4MinimalPercentageField, grade4MinimalPointField, grade3MaximalPointField);
 			calcValue(overallMaximalPointField, grade3MinimalPercentageField, grade3MinimalPointField, grade2MaximalPointField);
 			calcValue(overallMaximalPointField, grade2MinimalPercentageField, grade2MinimalPointField, null);
 		}
