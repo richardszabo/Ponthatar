@@ -12,9 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 import static android.content.ContentValues.TAG;
 
 public class PonthatarActivity extends Activity {
@@ -37,9 +34,9 @@ public class PonthatarActivity extends Activity {
     private TextView grade2MinimalPointField;
     private EditText grade2MaximalPercentageField;
     private TextView grade2MaximalPointField;
-	private DecimalFormat df;
 	GradeImplWithUIFields grade2, grade3, grade4, grade5;
 	AllGrades allGrades;
+	boolean inRecalculation;
 
 	void initFields() {
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
@@ -88,7 +85,7 @@ public class PonthatarActivity extends Activity {
 		grade5.setMinimalPointField(grade5MinimalPointField);
 		grade5.setMaximalPointField(grade5MaximalPointField);
 		allGrades.setGrade5(grade5);
-		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
+		allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
 	}
 
 	@Override
@@ -101,15 +98,15 @@ public class PonthatarActivity extends Activity {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
 				case 1: // Témazáró
-					allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.TEMAZARO);
+					allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
 					break;
 				case 0:	// Szódolgozat
 				default:
-					allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
+					allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
 					break;
 				}
-				allGrades.setGradePercentages();
-				recalc();
+				allGrades.setDefaultGradePercentages();
+				recalculateAllFields();
 			  }
 			 
 			  @Override
@@ -117,59 +114,40 @@ public class PonthatarActivity extends Activity {
 			  }	
 		});
 		overallMaximalPointField.addTextChangedListener(new OwnTextWatcher());
-
 		grade5MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
     	grade4MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
     	grade3MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
 		grade2MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-		df = new DecimalFormat("###");
-		df.setRoundingMode(RoundingMode.HALF_DOWN);
 	}
 	
 	class OwnTextWatcher implements TextWatcher {
-	    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-	    }
-	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-	    }
-
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {  }
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
 	    public void afterTextChanged(Editable s) {
-			recalc();
+			if( !inRecalculation ) {
+				recalculateAllFields();
+			}
 	    }
 	}
 
-	
-	public void recalc() {
+	void recalculatePercentages() {
+		allGrades.setGrade2MinimalPercentage(Integer.valueOf(grade2MinimalPercentageField.getText().toString()));
+		allGrades.setGrade3MinimalPercentage(Integer.valueOf(grade3MinimalPercentageField.getText().toString()));
+		allGrades.setGrade4MinimalPercentage(Integer.valueOf(grade4MinimalPercentageField.getText().toString()));
+		allGrades.setGrade5MinimalPercentage(Integer.valueOf(grade5MinimalPercentageField.getText().toString()));
+	}
+
+	public void recalculateAllFields() {
+		inRecalculation = true;
 		String max = overallMaximalPointField.getText().toString();
 		if( max != null && !"".equals(max.trim())) {
-			// percents
-			try {
-				grade4MaximalPercentageField.setText(Integer.toString(Integer.valueOf(grade5MinimalPercentageField.getText().toString()) - 1));
-				grade3MaximalPercentageField.setText(Integer.toString(Integer.valueOf(grade4MinimalPercentageField.getText().toString()) - 1));
-				grade2MaximalPercentageField.setText(Integer.toString(Integer.valueOf(grade3MinimalPercentageField.getText().toString()) - 1));
-			} catch(NumberFormatException nfe) {
-				Log.d(TAG,"Invalid number");
-			}
-			// values
-			grade5MaximalPointField.setText(overallMaximalPointField.getText());
-			calcValue(overallMaximalPointField, grade5MinimalPercentageField, grade5MinimalPointField, grade4MaximalPointField);
-			calcValue(overallMaximalPointField, grade4MinimalPercentageField, grade4MinimalPointField, grade3MaximalPointField);
-			calcValue(overallMaximalPointField, grade3MinimalPercentageField, grade3MinimalPointField, grade2MaximalPointField);
-			calcValue(overallMaximalPointField, grade2MinimalPercentageField, grade2MinimalPointField, null);
+			recalculatePercentages();
+			int overallMaximum = getNumber(overallMaximalPointField);
+			allGrades.calculatePointsFromOverallMaximum(overallMaximum);
 		}
+		inRecalculation = false;
 	}
-	
-	public void calcValue(EditText maxPoint, EditText percentText, TextView upperMinValueText, TextView lowerMaxValueText) {
-		int maxP = getNumber(maxPoint);
-		int percent = getNumber(percentText);
-		String value = df.format((float)(maxP * percent) / 100);
-		upperMinValueText.setText(value);
-		if( lowerMaxValueText != null ) {
-			lowerMaxValueText.setText(Integer.toString(Integer.valueOf(value) - 1));
-		}
-	}
-	
+
 	public int getNumber(EditText text) {
 		int myNum = 0;
 		if( text.getText() != null && !"".equals(text.getText().toString()) ) {

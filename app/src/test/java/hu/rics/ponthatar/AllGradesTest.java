@@ -24,7 +24,7 @@ public class AllGradesTest {
 
     @Test
     public void AllGrades_setGradePercentages_szodolgozatGradeMinimalPercentage() {
-        allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
+        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
         assertThat(allGrades.grade2.getMinimalPercentage(),is(TestPaperType.SZODOLGOZAT.grade2MinimalPercentage));
         assertThat(allGrades.grade3.getMinimalPercentage(),is(TestPaperType.SZODOLGOZAT.grade3MinimalPercentage));
         assertThat(allGrades.grade4.getMinimalPercentage(),is(TestPaperType.SZODOLGOZAT.grade4MinimalPercentage));
@@ -33,7 +33,7 @@ public class AllGradesTest {
 
     @Test
     public void AllGrades_setGradePercentages_szodolgozatGradeMaximalPercentage() {
-        allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
+        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
         assertThat(allGrades.grade2.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade3MinimalPercentage-1));
         assertThat(allGrades.grade3.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade4MinimalPercentage-1));
         assertThat(allGrades.grade4.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade5MinimalPercentage-1));
@@ -42,7 +42,7 @@ public class AllGradesTest {
 
     @Test
     public void AllGrades_setGradePercentages_temazaroGradeMinimalPercentage() {
-        allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.TEMAZARO);
+        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
         assertThat(allGrades.grade2.getMinimalPercentage(),is(TestPaperType.TEMAZARO.grade2MinimalPercentage));
         assertThat(allGrades.grade3.getMinimalPercentage(),is(TestPaperType.TEMAZARO.grade3MinimalPercentage));
         assertThat(allGrades.grade4.getMinimalPercentage(),is(TestPaperType.TEMAZARO.grade4MinimalPercentage));
@@ -51,7 +51,7 @@ public class AllGradesTest {
 
     @Test
     public void AllGrades_setGradePercentages_temazaroGradeMaximalPercentage() {
-        allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.TEMAZARO);
+        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
         assertThat(allGrades.grade2.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade3MinimalPercentage-1));
         assertThat(allGrades.grade3.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade4MinimalPercentage-1));
         assertThat(allGrades.grade4.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade5MinimalPercentage-1));
