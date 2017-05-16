@@ -16,10 +16,18 @@ public class GradeImpl implements Grade {
     @Getter
     int maximalPoint;
 
-    public boolean checkiIfPercentagesAreValid() {
-        return minimalPercentage >= 0 &&
-                minimalPercentage <= maximalPercentage &&
-                maximalPercentage <= 100;
+    boolean checkIfMinimalPercentageIsValid() {
+        return minimalPercentage >= 0;
+    }
+
+    boolean checkIfMaximalPercentageIsValid() {
+        return maximalPercentage <= 100;
+    }
+
+    public boolean checkIfPercentagesAreValid() {
+        return checkIfMinimalPercentageIsValid() &&
+                checkIfMaximalPercentageIsValid() &&
+                minimalPercentage <= maximalPercentage;
     }
 
     public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
