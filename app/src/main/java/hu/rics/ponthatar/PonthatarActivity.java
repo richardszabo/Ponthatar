@@ -41,10 +41,7 @@ public class PonthatarActivity extends Activity {
 	Grade grade2, grade3, grade4, grade5;
 	AllGrades allGrades;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ponthatar);
+	void initGrades() {
 		allGrades = new AllGrades();
 		grade2 = new GradeImpl();
 		allGrades.setGrade2(grade2);
@@ -55,6 +52,13 @@ public class PonthatarActivity extends Activity {
 		grade5 = new GradeImpl();
 		allGrades.setGrade5(grade5);
 		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_ponthatar);
+		initGrades();
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
 		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);
 		testPaperTypeField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
