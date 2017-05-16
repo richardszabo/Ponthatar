@@ -21,10 +21,10 @@ public class AllGrades {
 
     void setTestPaperType(TestPaperType testPaperType) {
         this.testPaperType = testPaperType;
-        setGrades();
+        setGradePercentages();
     }
 
-    void setGrades() {
+    void setGradePercentages() {
         grade2.setMinimalPercentage(testPaperType.grade2MinimalPercentage);
         grade2.setMaximalPercentage(testPaperType.grade3MinimalPercentage-1);
         grade3.setMinimalPercentage(testPaperType.grade3MinimalPercentage);
