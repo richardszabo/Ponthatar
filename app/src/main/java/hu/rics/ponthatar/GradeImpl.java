@@ -3,7 +3,7 @@ package hu.rics.ponthatar;
 import lombok.Getter;
 import lombok.Setter;
 
-public class GradeImpl {
+public class GradeImpl implements Grade {
     @Getter @Setter
     int minimalPercentage;
 
@@ -16,13 +16,13 @@ public class GradeImpl {
     @Getter
     int maximalPoint;
 
-    boolean checkiIfPercentagesAreValid() {
+    public boolean checkiIfPercentagesAreValid() {
         return minimalPercentage >= 0 &&
                 minimalPercentage <= maximalPercentage &&
                 maximalPercentage <= 100;
     }
 
-    void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
+    public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
         minimalPoint = Math.round((float)(overallMaximalPoint * minimalPercentage) / 100);
         maximalPoint = Math.round((float)(overallMaximalPoint * maximalPercentage) / 100);
     }

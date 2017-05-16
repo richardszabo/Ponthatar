@@ -6,10 +6,10 @@ public class AllGrades {
 
     @Getter
     TestPaperType testPaperType;
-    GradeImpl grade5;
-    GradeImpl grade4;
-    GradeImpl grade3;
-    GradeImpl grade2;
+    Grade grade5;
+    Grade grade4;
+    Grade grade3;
+    Grade grade2;
 
     AllGrades() {
         grade5 = new GradeImpl();
