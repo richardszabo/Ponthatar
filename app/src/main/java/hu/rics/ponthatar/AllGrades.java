@@ -6,16 +6,16 @@ public class AllGrades {
 
     @Getter
     TestPaperType testPaperType;
-    Grade grade5;
-    Grade grade4;
-    Grade grade3;
-    Grade grade2;
+    GradeImpl grade5;
+    GradeImpl grade4;
+    GradeImpl grade3;
+    GradeImpl grade2;
 
     AllGrades() {
-        grade5 = new Grade();
-        grade4 = new Grade();
-        grade3 = new Grade();
-        grade2 = new Grade();
+        grade5 = new GradeImpl();
+        grade4 = new GradeImpl();
+        grade3 = new GradeImpl();
+        grade2 = new GradeImpl();
         setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
     }
 

@@ -3,7 +3,7 @@ package hu.rics.ponthatar;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Grade {
+public class GradeImpl {
     @Getter @Setter
     int minimalPercentage;
 
