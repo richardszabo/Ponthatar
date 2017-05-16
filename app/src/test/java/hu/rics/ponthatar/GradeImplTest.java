@@ -70,4 +70,19 @@ public class GradeImplTest {
         gradeImpl.setMaximalPercentage(22);
         assertThat(gradeImpl.checkIfPercentagesAreValid(),is(false));
     }
+
+    @Test
+    public void gradeImpl_calculatePointsFromOverallMaximum_correctMinimalPoint() {
+        gradeImpl.setMinimalPercentage(23);
+        gradeImpl.calculatePointsFromOverallMaximum(100);
+        assertThat(gradeImpl.getMinimalPoint(),is(23));
+    }
+
+    @Test
+    public void gradeImpl_calculatePointsFromOverallMaximum_correctMaximalPoint() {
+        gradeImpl.setMaximalPercentage(77);
+        gradeImpl.calculatePointsFromOverallMaximum(100);
+        assertThat(gradeImpl.getMaximalPoint(),is(77));
+    }
+
 }
