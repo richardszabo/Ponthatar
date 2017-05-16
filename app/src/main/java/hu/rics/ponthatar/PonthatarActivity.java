@@ -38,6 +38,7 @@ public class PonthatarActivity extends Activity {
     private EditText grade2MaximalPercentageField;
     private TextView grade2MaximalPointField;
 	private DecimalFormat df;
+	Grade grade2, grade3, grade4, grade5;
 	AllGrades allGrades;
 
 	@Override
@@ -45,6 +46,14 @@ public class PonthatarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ponthatar);
 		allGrades = new AllGrades();
+		grade2 = new GradeImpl();
+		allGrades.setGrade2(grade2);
+		grade3 = new GradeImpl();
+		allGrades.setGrade3(grade3);
+		grade4 = new GradeImpl();
+		allGrades.setGrade4(grade4);
+		grade5 = new GradeImpl();
+		allGrades.setGrade5(grade5);
 		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
 		testPaperTypeField = (Spinner) findViewById(R.id.testPaperType);

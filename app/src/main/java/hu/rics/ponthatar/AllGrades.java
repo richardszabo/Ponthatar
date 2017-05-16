@@ -1,23 +1,20 @@
 package hu.rics.ponthatar;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class AllGrades {
 
     @Getter
     TestPaperType testPaperType;
-    Grade grade5;
-    Grade grade4;
-    Grade grade3;
+    @Setter
     Grade grade2;
-
-    AllGrades() {
-        grade5 = new GradeImpl();
-        grade4 = new GradeImpl();
-        grade3 = new GradeImpl();
-        grade2 = new GradeImpl();
-        setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
-    }
+    @Setter
+    Grade grade3;
+    @Setter
+    Grade grade4;
+    @Setter
+    Grade grade5;
 
     void setTestPaperTypeAndGradePercentages(TestPaperType testPaperType) {
         this.testPaperType = testPaperType;
@@ -25,14 +22,22 @@ public class AllGrades {
     }
 
     void setGradePercentages() {
-        grade2.setMinimalPercentage(testPaperType.grade2MinimalPercentage);
-        grade2.setMaximalPercentage(testPaperType.grade3MinimalPercentage-1);
-        grade3.setMinimalPercentage(testPaperType.grade3MinimalPercentage);
-        grade3.setMaximalPercentage(testPaperType.grade4MinimalPercentage-1);
-        grade4.setMinimalPercentage(testPaperType.grade4MinimalPercentage);
-        grade4.setMaximalPercentage(testPaperType.grade5MinimalPercentage-1);
-        grade5.setMinimalPercentage(testPaperType.grade5MinimalPercentage);
-        grade5.setMaximalPercentage(100);
+        if( grade2 != null ) {
+            grade2.setMinimalPercentage(testPaperType.grade2MinimalPercentage);
+            grade2.setMaximalPercentage(testPaperType.grade3MinimalPercentage - 1);
+        }
+        if( grade3 != null ) {
+            grade3.setMinimalPercentage(testPaperType.grade3MinimalPercentage);
+            grade3.setMaximalPercentage(testPaperType.grade4MinimalPercentage - 1);
+        }
+        if( grade4 != null ) {
+            grade4.setMinimalPercentage(testPaperType.grade4MinimalPercentage);
+            grade4.setMaximalPercentage(testPaperType.grade5MinimalPercentage - 1);
+        }
+        if( grade5 != null ) {
+            grade5.setMinimalPercentage(testPaperType.grade5MinimalPercentage);
+            grade5.setMaximalPercentage(100);
+        }
     }
 
 }
