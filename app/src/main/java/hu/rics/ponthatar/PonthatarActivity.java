@@ -43,13 +43,13 @@ public class PonthatarActivity extends Activity {
 
 	void initGrades() {
 		allGrades = new AllGrades();
-		grade2 = new GradeImpl();
+		grade2 = new GradeImplWithUIFields();
 		allGrades.setGrade2(grade2);
-		grade3 = new GradeImpl();
+		grade3 = new GradeImplWithUIFields();
 		allGrades.setGrade3(grade3);
-		grade4 = new GradeImpl();
+		grade4 = new GradeImplWithUIFields();
 		allGrades.setGrade4(grade4);
-		grade5 = new GradeImpl();
+		grade5 = new GradeImplWithUIFields();
 		allGrades.setGrade5(grade5);
 		allGrades.setTestPaperTypeAndGradePercentages(TestPaperType.SZODOLGOZAT);
 	}
