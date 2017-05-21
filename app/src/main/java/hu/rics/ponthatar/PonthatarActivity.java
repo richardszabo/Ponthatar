@@ -33,7 +33,6 @@ public class PonthatarActivity extends Activity {
     private TextView grade2MaximalPointField;
 	GradeImplWithUIFields grade2, grade3, grade4, grade5;
 	AllGrades allGrades;
-	boolean inRecalculation;
 
 	void initFields() {
 		overallMaximalPointField = (EditText) findViewById(R.id.overallMaximalPoint);
@@ -114,38 +113,22 @@ public class PonthatarActivity extends Activity {
 			  }	
 		});
 		overallMaximalPointField.addTextChangedListener(new OwnTextWatcher());
-		grade5MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade4MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-    	grade3MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
-		grade2MinimalPercentageField.addTextChangedListener(new OwnTextWatcher());
 	}
 	
 	class OwnTextWatcher implements TextWatcher {
 	    public void onTextChanged(CharSequence s, int start, int before, int count) {  }
 	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
 	    public void afterTextChanged(Editable s) {
-			if( !inRecalculation ) {
-				recalculateAllFields();
-			}
+			recalculateAllFields();
 	    }
 	}
 
-	void recalculatePercentages() {
-		allGrades.setGrade2MinimalPercentage(Integer.valueOf(grade2MinimalPercentageField.getText().toString()));
-		allGrades.setGrade3MinimalPercentage(Integer.valueOf(grade3MinimalPercentageField.getText().toString()));
-		allGrades.setGrade4MinimalPercentage(Integer.valueOf(grade4MinimalPercentageField.getText().toString()));
-		allGrades.setGrade5MinimalPercentage(Integer.valueOf(grade5MinimalPercentageField.getText().toString()));
-	}
-
 	public void recalculateAllFields() {
-		inRecalculation = true;
 		String max = overallMaximalPointField.getText().toString();
 		if( max != null && !"".equals(max.trim())) {
-			recalculatePercentages();
 			int overallMaximum = getNumber(overallMaximalPointField);
 			allGrades.calculatePointsFromOverallMaximum(overallMaximum);
 		}
-		inRecalculation = false;
 	}
 
 	public int getNumber(EditText text) {
