@@ -5,7 +5,7 @@ import android.widget.TextView;
 import lombok.Getter;
 import lombok.Setter;
 
-public class GradeImplWithUIFields extends GradeImpl {
+public class GradeImplWithUIFields extends GradeWithNeighborImpl {
     @Getter @Setter
     TextView minimalPercentageField;
     @Getter @Setter
@@ -30,7 +30,7 @@ public class GradeImplWithUIFields extends GradeImpl {
             maximalPercentageField.setText(Integer.toString(maximalPercentage));
         }
     }
-
+    
     @Override
     public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
         super.calculatePointsFromOverallMaximum(overallMaximalPoint);

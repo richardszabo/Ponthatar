@@ -30,11 +30,8 @@ public class AllGrades {
 
     void setDefaultGradePercentages() {
         grade2.setMinimalPercentage(testPaperType.grade2MinimalPercentage);
-        grade2.setMaximalPercentage(testPaperType.grade3MinimalPercentage - 1);
         grade3.setMinimalPercentage(testPaperType.grade3MinimalPercentage);
-        grade3.setMaximalPercentage(testPaperType.grade4MinimalPercentage - 1);
         grade4.setMinimalPercentage(testPaperType.grade4MinimalPercentage);
-        grade4.setMaximalPercentage(testPaperType.grade5MinimalPercentage - 1);
         grade5.setMinimalPercentage(testPaperType.grade5MinimalPercentage);
         grade5.setMaximalPercentage(100);
     }
@@ -45,17 +42,14 @@ public class AllGrades {
 
     void setGrade3MinimalPercentage(int percentage) {
         grade3.setMinimalPercentage(percentage);
-        grade2.setMaximalPercentage(percentage-1);
     }
 
     void setGrade4MinimalPercentage(int percentage) {
         grade4.setMinimalPercentage(percentage);
-        grade3.setMaximalPercentage(percentage-1);
     }
 
     void setGrade5MinimalPercentage(int percentage) {
         grade5.setMinimalPercentage(percentage);
-        grade4.setMaximalPercentage(percentage-1);
     }
 
     public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {

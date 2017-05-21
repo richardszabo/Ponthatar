@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import static android.content.ContentValues.TAG;
 
 public class PonthatarActivity extends Activity {
 	
@@ -72,18 +69,21 @@ public class PonthatarActivity extends Activity {
 		grade3.setMaximalPercentageField(grade3MaximalPercentageField);
 		grade3.setMinimalPointField(grade3MinimalPointField);
 		grade3.setMaximalPointField(grade3MaximalPointField);
+		grade3.setLowerNeighbor(grade2);
 		allGrades.setGrade3(grade3);
 		grade4 = new GradeImplWithUIFields();
 		grade4.setMinimalPercentageField(grade4MinimalPercentageField);
 		grade4.setMaximalPercentageField(grade4MaximalPercentageField);
 		grade4.setMinimalPointField(grade4MinimalPointField);
 		grade4.setMaximalPointField(grade4MaximalPointField);
+		grade4.setLowerNeighbor(grade3);
 		allGrades.setGrade4(grade4);
 		grade5 = new GradeImplWithUIFields();
 		grade5.setMinimalPercentageField(grade5MinimalPercentageField);
 		grade5.setMaximalPercentageField(grade5MaximalPercentageField);
 		grade5.setMinimalPointField(grade5MinimalPointField);
 		grade5.setMaximalPointField(grade5MaximalPointField);
+		grade5.setLowerNeighbor(grade4);
 		allGrades.setGrade5(grade5);
 		allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
 	}
