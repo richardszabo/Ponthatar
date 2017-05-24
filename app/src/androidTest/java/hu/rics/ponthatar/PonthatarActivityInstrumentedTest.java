@@ -5,17 +5,12 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -33,10 +28,10 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class PonthatarActivityInstrumentedTest {
-    PonthatarActivity ponthatarActivity;
+    private PonthatarActivity ponthatarActivity;
 
     @Rule
-    public ActivityTestRule<PonthatarActivity> activityRule = new ActivityTestRule(
+    public ActivityTestRule<PonthatarActivity> activityRule = new ActivityTestRule<PonthatarActivity>(
             PonthatarActivity.class);
 
     @Before
@@ -49,19 +44,6 @@ public class PonthatarActivityInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("hu.rics.ponthatar", appContext.getPackageName());
-    }
-
-    @Test
-    public void getNumber_validNumber() {
-        int testNumber = 23;
-        onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
-        assertEquals(testNumber, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint)));
-    }
-
-    @Test
-    public void getNumber_invalidNumber() {
-        onView(withId(R.id.overallMaximalPoint)).perform(replaceText("alma"), closeSoftKeyboard());
-        assertEquals(0, ponthatarActivity.getNumber((EditText) ponthatarActivity.findViewById(R.id.overallMaximalPoint)));
     }
 
     @Test
@@ -103,12 +85,12 @@ public class PonthatarActivityInstrumentedTest {
 
     }
 
-    void recalc_init() {
+    private void recalc_init() {
         int testNumber = 55;
         onView(withId(R.id.overallMaximalPoint)).perform(replaceText(Integer.toString(testNumber)), closeSoftKeyboard());
     }
 
-    void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
+    private void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
         int percent = 83;
         onView(withId(idOfUpperGradeMinPercentField)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
         onView(withId(idOfLowerGradeMaxPercentField)).check(matches(withText(Integer.toString(percent - 1))));

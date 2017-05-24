@@ -3,7 +3,7 @@ package hu.rics.ponthatar;
 import lombok.Getter;
 import lombok.Setter;
 
-public class GradeWithNeighborImpl extends GradeImpl implements GradeWithNeighbor {
+class GradeWithNeighborImpl extends GradeImpl implements GradeWithNeighbor {
     @Getter @Setter
     Grade lowerNeighbor = new GradeImpl();
 

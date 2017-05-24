@@ -1,6 +1,6 @@
 package hu.rics.ponthatar;
 
-public enum TestPaperType {
+enum TestPaperType {
     TEMAZARO(40,55,70,85),
     SZODOLGOZAT(51,64,77,90);
     int grade2MinimalPercentage;

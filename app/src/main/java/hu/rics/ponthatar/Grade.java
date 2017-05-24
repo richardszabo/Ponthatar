@@ -1,6 +1,6 @@
 package hu.rics.ponthatar;
 
-public interface Grade {
+interface Grade {
     int getMinimalPercentage();
     void setMinimalPercentage(int minimalPercentage);
     int getMaximalPercentage();

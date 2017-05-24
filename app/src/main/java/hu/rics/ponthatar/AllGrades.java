@@ -3,7 +3,7 @@ package hu.rics.ponthatar;
 import lombok.Getter;
 import lombok.Setter;
 
-public class AllGrades {
+class AllGrades {
 
     @Getter
     TestPaperType testPaperType;
@@ -36,7 +36,7 @@ public class AllGrades {
         grade5.setMaximalPercentage(100);
     }
 
-    public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
+    void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
         grade2.calculatePointsFromOverallMaximum(overallMaximalPoint);
         grade3.calculatePointsFromOverallMaximum(overallMaximalPoint);
         grade4.calculatePointsFromOverallMaximum(overallMaximalPoint);

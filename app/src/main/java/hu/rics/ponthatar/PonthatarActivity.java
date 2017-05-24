@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
@@ -96,10 +97,10 @@ public class PonthatarActivity extends Activity {
 		testPaperTypeField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 				switch( pos ) {
-				case 1: // Témazáró
+				case 1:
 					allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
 					break;
-				case 0:	// Szódolgozat
+				case 0:
 				default:
 					allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
 					break;
@@ -115,7 +116,7 @@ public class PonthatarActivity extends Activity {
 		overallMaximalPointField.addTextChangedListener(new OwnTextWatcher());
 	}
 	
-	class OwnTextWatcher implements TextWatcher {
+	private class OwnTextWatcher implements TextWatcher {
 	    public void onTextChanged(CharSequence s, int start, int before, int count) {  }
 	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
 	    public void afterTextChanged(Editable s) {
@@ -125,27 +126,16 @@ public class PonthatarActivity extends Activity {
 
 	public void recalculateAllFields() {
 		String max = overallMaximalPointField.getText().toString();
-		if( max != null && !"".equals(max.trim())) {
-			int overallMaximum = getNumber(overallMaximalPointField);
-			allGrades.calculatePointsFromOverallMaximum(overallMaximum);
-		}
-	}
-
-	public int getNumber(EditText text) {
-		int myNum = 0;
-		if( text.getText() != null && !"".equals(text.getText().toString()) ) {
-			try {
-			    myNum = Integer.parseInt(text.getText().toString());
-			} catch(NumberFormatException nfe) {
-			   System.out.println("Could not parse " + nfe);
-			} 
-		}
-		return myNum;
+        try {
+            int overallMaximum = Integer.parseInt(max);
+            allGrades.calculatePointsFromOverallMaximum(overallMaximum);
+        } catch(NumberFormatException nfe) {
+            Log.d("Ponthatar","Could not parse " + nfe);
+        }
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.ponthatar, menu);
 		return true;
 	}
