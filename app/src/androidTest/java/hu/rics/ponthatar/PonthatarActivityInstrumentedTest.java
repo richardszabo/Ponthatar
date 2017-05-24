@@ -5,6 +5,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.KeyEvent;
 import android.widget.EditText;
 
 import org.junit.Before;
@@ -16,6 +17,7 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -92,7 +94,9 @@ public class PonthatarActivityInstrumentedTest {
 
     private void recalc_maxPercentSet(final int idOfUpperGradeMinPercentField, final int idOfLowerGradeMaxPercentField) {
         int percent = 83;
+        onView(withId(idOfUpperGradeMinPercentField)).perform(click());
         onView(withId(idOfUpperGradeMinPercentField)).perform(replaceText(Integer.toString(percent)), closeSoftKeyboard());
+        onView(withId(R.id.overallMaximalPoint)).perform(click());
         onView(withId(idOfLowerGradeMaxPercentField)).check(matches(withText(Integer.toString(percent - 1))));
     }
 
