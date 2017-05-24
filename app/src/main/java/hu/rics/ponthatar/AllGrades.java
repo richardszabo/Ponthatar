@@ -36,22 +36,6 @@ public class AllGrades {
         grade5.setMaximalPercentage(100);
     }
 
-    void setGrade2MinimalPercentage(int percentage) {
-        grade2.setMinimalPercentage(percentage);
-    }
-
-    void setGrade3MinimalPercentage(int percentage) {
-        grade3.setMinimalPercentage(percentage);
-    }
-
-    void setGrade4MinimalPercentage(int percentage) {
-        grade4.setMinimalPercentage(percentage);
-    }
-
-    void setGrade5MinimalPercentage(int percentage) {
-        grade5.setMinimalPercentage(percentage);
-    }
-
     public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
         grade2.calculatePointsFromOverallMaximum(overallMaximalPoint);
         grade3.calculatePointsFromOverallMaximum(overallMaximalPoint);
