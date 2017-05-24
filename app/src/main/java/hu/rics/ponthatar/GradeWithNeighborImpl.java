@@ -12,4 +12,10 @@ class GradeWithNeighborImpl extends GradeImpl implements GradeWithNeighbor {
         super.setMinimalPercentage(minimalPercentage);
         lowerNeighbor.setMaximalPercentage(minimalPercentage-1);
     }
+
+    @Override
+    public void calculatePointsFromOverallMaximum() {
+        super.calculatePointsFromOverallMaximum();
+        lowerNeighbor.calculatePointsFromOverallMaximum();
+    }
 }

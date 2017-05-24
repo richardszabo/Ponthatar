@@ -16,6 +16,9 @@ class GradeImpl implements Grade {
     @Getter
     int maximalPoint;
 
+    @Setter
+    int overallMaximum;
+
     boolean checkIfMinimalPercentageIsValid() {
         return minimalPercentage >= 0;
     }
@@ -30,8 +33,8 @@ class GradeImpl implements Grade {
                 minimalPercentage <= maximalPercentage;
     }
 
-    public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
-        minimalPoint = Math.round((float)(overallMaximalPoint * minimalPercentage) / 100);
-        maximalPoint = Math.round((float)(overallMaximalPoint * maximalPercentage) / 100);
+    public void calculatePointsFromOverallMaximum() {
+        minimalPoint = Math.round((float)(overallMaximum * minimalPercentage) / 100);
+        maximalPoint = Math.round((float)(overallMaximum * maximalPercentage) / 100);
     }
 }

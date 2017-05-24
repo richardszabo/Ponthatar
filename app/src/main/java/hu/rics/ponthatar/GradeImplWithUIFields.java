@@ -49,6 +49,7 @@ class GradeImplWithUIFields extends GradeWithNeighborImpl {
                     int minimalPercentageProbe = Integer.parseInt(minimalPercentageString);
                     if( checkIfPercentagesAreValid() ) {
                         setMinimalPercentage(minimalPercentageProbe);
+                        calculatePointsFromOverallMaximum();
                     } else {
                         minimalPercentageField.setText(String.format(Locale.US,"%d",minimalPercentage));
                     }
@@ -60,8 +61,8 @@ class GradeImplWithUIFields extends GradeWithNeighborImpl {
     }
 
     @Override
-    public void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
-        super.calculatePointsFromOverallMaximum(overallMaximalPoint);
+    public void calculatePointsFromOverallMaximum() {
+        super.calculatePointsFromOverallMaximum();
         if( minimalPointField != null ) {
             minimalPointField.setText(String.format(Locale.US,"%d",minimalPoint));
         }

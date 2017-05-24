@@ -8,5 +8,6 @@ interface Grade {
     int getMinimalPoint();
     int getMaximalPoint();
     boolean checkIfPercentagesAreValid();
-    void calculatePointsFromOverallMaximum(int overallMaximalPoint);
+    void setOverallMaximum(int overallMaximalPoint);
+    void calculatePointsFromOverallMaximum();
 }

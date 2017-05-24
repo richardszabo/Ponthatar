@@ -74,14 +74,16 @@ public class GradeImplTest {
     @Test
     public void gradeImpl_calculatePointsFromOverallMaximum_correctMinimalPoint() {
         gradeImpl.setMinimalPercentage(23);
-        gradeImpl.calculatePointsFromOverallMaximum(100);
+        gradeImpl.setOverallMaximum(100);
+        gradeImpl.calculatePointsFromOverallMaximum();
         assertThat(gradeImpl.getMinimalPoint(),is(23));
     }
 
     @Test
     public void gradeImpl_calculatePointsFromOverallMaximum_correctMaximalPoint() {
         gradeImpl.setMaximalPercentage(77);
-        gradeImpl.calculatePointsFromOverallMaximum(100);
+        gradeImpl.setOverallMaximum(100);
+        gradeImpl.calculatePointsFromOverallMaximum();
         assertThat(gradeImpl.getMaximalPoint(),is(77));
     }
 

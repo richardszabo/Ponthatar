@@ -37,10 +37,11 @@ class AllGrades {
     }
 
     void calculatePointsFromOverallMaximum(int overallMaximalPoint) {
-        grade2.calculatePointsFromOverallMaximum(overallMaximalPoint);
-        grade3.calculatePointsFromOverallMaximum(overallMaximalPoint);
-        grade4.calculatePointsFromOverallMaximum(overallMaximalPoint);
-        grade5.calculatePointsFromOverallMaximum(overallMaximalPoint);
+        grade2.setOverallMaximum(overallMaximalPoint);
+        grade3.setOverallMaximum(overallMaximalPoint);
+        grade4.setOverallMaximum(overallMaximalPoint);
+        grade5.setOverallMaximum(overallMaximalPoint);
+        grade5.calculatePointsFromOverallMaximum();
     }
 
 }
