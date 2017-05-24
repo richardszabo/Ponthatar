@@ -1,0 +1,19 @@
+language: android
+jdk: oraclejdk8
+
+addons:
+  apt:
+    packages:
+      - lynx
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-25.0.0
+    - android-25
+    - extra-android-support
+    - extra-android-m2repository
+
+script:
+  - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html; fi
