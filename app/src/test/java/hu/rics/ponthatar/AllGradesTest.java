@@ -3,8 +3,12 @@ package hu.rics.ponthatar;
 import org.junit.Before;
 import org.junit.Test;
 
+import static hu.rics.ponthatar.R.string.grade;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class AllGradesTest {
     private AllGrades allGrades;
@@ -31,15 +35,6 @@ public class AllGradesTest {
         assertThat(allGrades.grade5.getMinimalPercentage(),is(TestPaperType.SZODOLGOZAT.grade5MinimalPercentage));
     }
 
-    /*@Test
-    public void AllGrades_setGradePercentages_szodolgozatGradeMaximalPercentage() {
-        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.SZODOLGOZAT);
-        assertThat(allGrades.grade2.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade3MinimalPercentage-1));
-        assertThat(allGrades.grade3.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade4MinimalPercentage-1));
-        assertThat(allGrades.grade4.getMaximalPercentage(),is(TestPaperType.SZODOLGOZAT.grade5MinimalPercentage-1));
-        assertThat(allGrades.grade5.getMaximalPercentage(),is(100));
-    }*/
-
     @Test
     public void AllGrades_setGradePercentages_temazaroGradeMinimalPercentage() {
         allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
@@ -49,12 +44,20 @@ public class AllGradesTest {
         assertThat(allGrades.grade5.getMinimalPercentage(),is(TestPaperType.TEMAZARO.grade5MinimalPercentage));
     }
 
-    /*@Test
-    public void AllGrades_setGradePercentages_temazaroGradeMaximalPercentage() {
-        allGrades.setTestPaperTypeAndDefaultGradePercentages(TestPaperType.TEMAZARO);
-        assertThat(allGrades.grade2.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade3MinimalPercentage-1));
-        assertThat(allGrades.grade3.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade4MinimalPercentage-1));
-        assertThat(allGrades.grade4.getMaximalPercentage(),is(TestPaperType.TEMAZARO.grade5MinimalPercentage-1));
-        assertThat(allGrades.grade5.getMaximalPercentage(),is(100));
-    }*/
+    @Test
+    public void AllGrades_calculatePointsFromOverallMaximum_setOverallMaximumIsCalled() {
+        Grade grade2 = mock(Grade.class);
+        allGrades.setGrade2(grade2);
+        Grade grade3 = mock(Grade.class);
+        allGrades.setGrade3(grade3);
+        Grade grade4 = mock(Grade.class);
+        allGrades.setGrade4(grade4);
+        Grade grade5 = mock(Grade.class);
+        allGrades.setGrade5(grade5);
+        allGrades.calculatePointsFromOverallMaximum(100);
+        verify(grade2,times(1)).setOverallMaximum(100);
+        verify(grade3,times(1)).setOverallMaximum(100);
+        verify(grade4,times(1)).setOverallMaximum(100);
+        verify(grade5,times(1)).setOverallMaximum(100);
+    }
 }
