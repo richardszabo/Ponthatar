@@ -3,6 +3,7 @@ package hu.rics.ponthatar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import lombok.Getter;
@@ -35,26 +36,25 @@ public class GradeImplWithUIFields extends GradeWithNeighborImpl {
     }
 
     void setMinimalPercentageField(TextView minimalPercentageField) {
-            this.minimalPercentageField = minimalPercentageField;
-            this.minimalPercentageField.addTextChangedListener(new MinimalPercentageFieldWatcher());
-        }
+        this.minimalPercentageField = minimalPercentageField;
+        this.minimalPercentageField.setOnFocusChangeListener(new MinimalPercentageFieldFocusChangeListener());
+    }
 
-    class MinimalPercentageFieldWatcher implements TextWatcher {
-        public void onTextChanged(CharSequence s, int start, int before, int count) {  }
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
-        public void afterTextChanged(Editable s) {
-            String minimalPercentageString = minimalPercentageField.getText().toString();
-            try {
-                int minimalPercentageProbe = Integer.parseInt(minimalPercentageString);
-                minimalPercentageField.removeTextChangedListener(this);
-                if( checkIfPercentagesAreValid() ) {
-                    setMinimalPercentage(minimalPercentageProbe);
-                } else {
-                    minimalPercentageField.setText(Integer.toString(minimalPercentage));
+    class MinimalPercentageFieldFocusChangeListener implements View.OnFocusChangeListener {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                String minimalPercentageString = minimalPercentageField.getText().toString();
+                try {
+                    int minimalPercentageProbe = Integer.parseInt(minimalPercentageString);
+                    if( checkIfPercentagesAreValid() ) {
+                        setMinimalPercentage(minimalPercentageProbe);
+                    } else {
+                        minimalPercentageField.setText(Integer.toString(minimalPercentage));
+                    }
+                } catch(NumberFormatException nfe) {
+                    Log.d("Ponthatar","Could not parse " + nfe);
                 }
-                minimalPercentageField.addTextChangedListener(this);
-            } catch(NumberFormatException nfe) {
-                Log.d("Ponthatar","Could not parse " + nfe);
             }
         }
     }
