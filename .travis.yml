@@ -16,4 +16,5 @@ android:
     - extra-android-m2repository
 
 script:
+  ./gradlew build connectedCheck
   - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html; fi
