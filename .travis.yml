@@ -6,14 +6,25 @@ addons:
     packages:
       - lynx
 
+env:
+ global:
+    - ANDROID_API=25
+
 android:
   components:
     - platform-tools
     - tools
     - build-tools-25.0.0
-    - android-25
+    - android-$ANDROID_API
     - extra-android-support
     - extra-android-m2repository
+    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API
+
+before_script:
+  - echo no | android create avd --force -n test -t android-$ANDROID_API --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
 script:
   - ./gradlew build
