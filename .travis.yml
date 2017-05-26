@@ -20,4 +20,5 @@ script:
   - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html; fi
   - ./gradlew test
   - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/reports/tests/testDebugUnitTest/index.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/reports/tests/testDebugUnitTest/index.html; fi
+  - ./gradlew connectedCheck
 
