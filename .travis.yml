@@ -8,7 +8,7 @@ addons:
 
 env:
  global:
-    - ANDROID_API=22
+    - ANDROID_API=25
 
 android:
   components:
@@ -18,18 +18,11 @@ android:
     - android-$ANDROID_API
     - extra-android-support
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-google_apis-$ANDROID_API
 
-before_script:
-  - echo no | android create avd --force -n test -t "android-$ANDROID_API" --abi armeabi-v7a --tag google-apis
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
 
 script:
   - ./gradlew build
   - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/outputs/lint-results-debug.html; fi
   - ./gradlew test
   - if [ -f /home/travis/build/richardszabo/Ponthatar/app/build/reports/tests/testDebugUnitTest/index.html ]; then lynx -dump /home/travis/build/richardszabo/Ponthatar/app/build/reports/tests/testDebugUnitTest/index.html; fi
-  - ./gradlew connectedCheck
 
